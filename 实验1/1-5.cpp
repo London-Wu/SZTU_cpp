@@ -1,6 +1,6 @@
 #include <iostream>
 #include <string>
-#include <iomanip> //必须包含这个头文件
+#include <iomanip>
 using namespace std;
 
 int main()
@@ -8,53 +8,39 @@ int main()
 {
 	int t;
 	cin >> t;
-	char a[50], b[50], c[50];
-	int begin1, end1;
-	int begin2, end2;
-	int begin3, end3;
-	int newlength;
-	int length1, length2, length3;
+	int ret[50][50];
 	for (int i = 0;i < t;i++)
 	{
-		getchar();
-		cin >> a >> b >> c;
-		
-		cin >> begin1 >> end1;
-		cin >> begin2 >> end2;
-		cin >> begin3 >> end3;
-		
-		char* ap = a, * bp = b, * cp = c;
-		ap += begin1 - 1;
-		bp += begin2 - 1;
-		cp += begin3 - 1;
-		
-		length1 = end1 - begin1+1;
-		length2 = end2 - begin2+1;
-		length3 = end3 - begin3+1;
-		newlength = length1 + length2 + length3;
-		char* newstr = new char[newlength + 1];
-		
-		for (int j = 0;j < length1;j++)
+		for (int j = 0;j < 2;j++) 
 		{
-			*(newstr + j) = *ap;
-			ap++;
-		}
-		for (int j = length1;j < length1 + length2;j++)
-		{
-			*(newstr + j) = *bp;
-			bp++;
-		}
-		for (int j = length1+length2;j < length1 + length2 + length3;j++)
-		{
-			*(newstr + j) = *cp;
-			cp++;
+			for (int k = 0;k < 3;k++) 
+			{
+				cin >> ret[j][k];
+			}
 		}
 		
-		*(newstr + newlength) = '\0';
-		cout << newstr << endl;
-		delete[] newstr;
+		int** p = new int*[3];
+		for (int j = 0;j < 3;j++) 
+		{
+			*(p+j) = new int[2];
+		}
 		
+		for (int j = 0;j < 3;j++)
+		{
+			**(p + j) = *(*ret + 2 - j);
+			*(* (p + j) + 1) = *(*(ret + 1) + 2 - j);
+		}
+		
+		for (int j = 0;j < 3;j++) 
+		{
+			for (int k = 0;k < 2;k++) 
+			{
+				cout << *(*(p + j) + k) << " ";
+			}
+			cout << endl;
+		}
 	}
+	
 	
 	return 0;
 }
