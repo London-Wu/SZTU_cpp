@@ -1,59 +1,50 @@
 #include <iostream>
-#include <string>
-#include <iomanip> //必须包含这个头文件
+#include <cstring>
 using namespace std;
 
 int main()
-
 {
 	int t;
 	cin >> t;
-	char a[50], b[50], c[50];
+	
+	char str1[100], str2[100], str3[100];
 	int begin1, end1;
-	int begin2, end2;
-	int begin3, end3;
-	int newlength;
-	int length1, length2, length3;
-	for (int i = 0;i < t;i++)
+	char res[100];
+	
+	char *poi_str;
+	char *poi_res;
+	
+	while(t--)
 	{
-		getchar();
-		cin >> a >> b >> c;
+		poi_res = res;
+		cin >> str1 >> str2 >> str3;
 		
 		cin >> begin1 >> end1;
-		cin >> begin2 >> end2;
-		cin >> begin3 >> end3;
-		
-		char* ap = a, * bp = b, * cp = c;
-		ap += begin1 - 1;
-		bp += begin2 - 1;
-		cp += begin3 - 1;
-		
-		length1 = end1 - begin1+1;
-		length2 = end2 - begin2+1;
-		length3 = end3 - begin3+1;
-		newlength = length1 + length2 + length3;
-		char* newstr = new char[newlength + 1];
-		
-		for (int j = 0;j < length1;j++)
+		poi_str = str1;
+		for(int j=begin1-1; j<end1; j++)
 		{
-			*(newstr + j) = *ap;
-			ap++;
-		}
-		for (int j = length1;j < length1 + length2;j++)
-		{
-			*(newstr + j) = *bp;
-			bp++;
-		}
-		for (int j = length1+length2;j < length1 + length2 + length3;j++)
-		{
-			*(newstr + j) = *cp;
-			cp++;
+			*poi_res = *(poi_str+j);
+			poi_res++;
 		}
 		
-		*(newstr + newlength) = '\0';
-		cout << newstr << endl;
-		delete[] newstr;
+		cin >> begin1 >> end1;
+		poi_str = str2;
+		for(int j=begin1-1; j<end1; j++)
+		{
+			*poi_res = *(poi_str+j);
+			poi_res++;
+		}
 		
+		cin >> begin1 >> end1;
+		poi_str = str3;
+		for(int j=begin1-1; j<end1; j++)
+		{
+			*poi_res = *(poi_str+j);
+			poi_res++;
+		}
+		
+		*poi_res = '\0';
+		cout << res << endl;
 	}
 	
 	return 0;
